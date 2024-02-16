@@ -14,9 +14,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { SignupValidation } from "@/lib/validation";
 import { createUserAccount } from "@/lib/appwrite/api";
+import { useToast } from "@/components/ui/use-toast";
+
+/*
+import {
+  useCreateUserAccount,
+  useSignInAccount,
+} from "@/lib/react-query/queries";
+*/
 
 const SignupForm = () => {
-  // 1. Define your form.
+  const { toast } = useToast();
+
+  // Queries
+  //  const { mutateAsync: createUserAccount } = useCreateUserAccount();
+  //const { mutateAsync: signInAccount } = useSignInAccount();
+
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
@@ -27,13 +40,24 @@ const SignupForm = () => {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     const newUser = await createUserAccount(values);
     console.log(values);
+    if (!newUser) {
+      toast({ title: "Sign up failed. Please try again." });
+      return;
+    }
   }
+  /*
+  const session = await signInAccount({
+    email: values.email,
+    password: values.password,
+  });
+
+  if (!session) {
+    toast({ title: "Something went wrong. Please login your new account" });
+    return;
+  }*/
 
   return (
     <Form {...form}>
