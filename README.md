@@ -46,3 +46,5 @@ npx shadcn-ui@latest add input
 npm install appwrite
 npx shadcn-ui@latest add toast
 npm install @tanstack/react-query
+npx shadcn-ui@latest add textarea
+npm install react-dropzone
