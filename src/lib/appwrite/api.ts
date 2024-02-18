@@ -1,7 +1,7 @@
 import { ID, Query } from "appwrite";
 import { INewUser, INewPost } from "@/types";
 import { appwriteConfig, account, avatars, databases, storage } from "./config";
-import { useQuery } from "@tanstack/react-query";
+//import { useQuery } from "@tanstack/react-query";
 
 // ============================== SIGN UP ==============================
 export async function createUserAccount(user: INewUser) {

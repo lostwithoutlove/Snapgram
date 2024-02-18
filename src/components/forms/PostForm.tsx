@@ -33,8 +33,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
   const { user } = useUserContext();
 
   // Query
-  const { mutateAsync: createPost, isLoading: isLoadingCreate } =
-    useCreatePost();
+  const { mutateAsync: createPost } = useCreatePost();
 
   const form = useForm<z.infer<typeof postValidation>>({
     resolver: zodResolver(postValidation),
